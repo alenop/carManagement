@@ -13,8 +13,9 @@ export class Login {
 
   constructor(private fb: FormBuilder,private router:Router) {
     this.UserForm = this.fb.group({
-      mail: ['', Validators.required],
-      motDePasse: ['', [Validators.required]],
+      mail: ['', [Validators.required],Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)],
+
+      motDePasse: ['', [Validators.required],Validators.pattern(/^.{6,}$/)], 
     });
   }
   goToSignIn(){

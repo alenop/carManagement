@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators,AbstractControl } from '@angular/forms';
 import { AuthenticationService } from '../services/authentification.service';
 import { Router } from '@angular/router';
 @Component({
@@ -12,12 +12,35 @@ export class Register {
   UserForm: FormGroup;
 
   constructor(private fb: FormBuilder,private router:Router) {
-    this.UserForm = this.fb.group({
-      username: ['', Validators.required],
-      mail: ['', Validators.required],
-      number: ['', Validators.required],
-      motDePasse: ['', [Validators.required]],
-    });
+    this.UserForm = this.fb.group(
+      {
+        username: ['', Validators.required],
+        mail: ['', [Validators.required, Validators.email]],
+        number: ['', Validators.required],
+        motDePasse: ['', [Validators.required, Validators.minLength(6)]],
+        confirmPassword: ['', Validators.required],
+      },
+      {
+        validator: this.matchPasswords('motDePasse', 'confirmPassword'),
+      }
+  );
+  }
+  matchPasswords(password: string, confirmPassword: string) {
+    return (formGroup: AbstractControl) => {
+      const pass = formGroup.get(password);
+      const confirmPass = formGroup.get(confirmPassword);
+
+      if (confirmPass?.errors && !confirmPass.errors['passwordMismatch']) {
+        // If another validator has already found an error, do nothing.
+        return;
+      }
+
+      if (pass?.value !== confirmPass?.value) {
+        confirmPass?.setErrors({ passwordMismatch: true }); // Set error
+      } else {
+        confirmPass?.setErrors(null); // Clear error
+      }
+    };
   }
   goToLogin(){
     this.router.navigate(['/login'])

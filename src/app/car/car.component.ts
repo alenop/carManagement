@@ -17,6 +17,8 @@ export class CarComponent {
       marque: ['', Validators.required],
       modele: ['', Validators.required],
       plaque: ['', [Validators.required, Validators.pattern(/^[A-Z0-9-]{1,10}$/)]],
+      upFrontFile: ['', Validators.required],
+      behindFile: ['', Validators.required],
     });
   }
 

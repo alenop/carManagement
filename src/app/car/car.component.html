@@ -27,16 +27,15 @@
       <!-- Photo Avant -->
       <ion-item>
         <ion-label position="stacked">Photo Avant</ion-label>
-        <input type="file" (change)="onFileChange($event, 'avant')" />
+        <input formControlName="upFrontFile" type="file" (change)="onFileChange($event, 'avant')" />
       </ion-item>
   
       <!-- Photo Arrière -->
       <ion-item>
         <ion-label position="stacked">Photo Arrière</ion-label>
-        <input type="file" (change)="onFileChange($event, 'arriere')" />
+        <input formControlName="behindFile" type="file" (change)="onFileChange($event, 'arriere')" />
       </ion-item>
   
-      <!-- Submit Button -->
       <ion-button expand="full" type="submit" [disabled]="carForm.invalid">Submit</ion-button>
     </form>
 

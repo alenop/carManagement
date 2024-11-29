@@ -9,7 +9,7 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyABG-rDG5zbZD6I-bbjYi07y7c8Jht7t8s",
+  
   authDomain: "angular-ionic-car.firebaseapp.com",
   projectId: "angular-ionic-car",
   databaseURL:"https://angular-ionic-car-default-rtdb.europe-west1.firebasedatabase.app/",
