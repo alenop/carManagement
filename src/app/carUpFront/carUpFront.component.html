@@ -1,5 +1,5 @@
 <ion-item *ngIf="car" [routerLink]="'/car/' + car.id" [detail]="false">
-  <div slot="start" [class]="!car.rented ? 'dot dot-free' : 'dot dot-rented'"></div>
+  <div slot="start" [class]="car.rented ? 'dot dot-free' : 'dot dot-rented'"></div>
   <ion-label class="ion-text-wrap">
     <div class="row">
       <ion-img class="image"
