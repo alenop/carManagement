@@ -1,25 +1,39 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { RefresherCustomEvent } from '@ionic/angular';
-import { MessageComponent } from '../message/message.component';
-
-import { DataService, Message } from '../services/data.service';
+import { carUpFrontComponent } from '../carUpFront/carUpFront.component';
+import { DataService, Car } from '../services/data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage implements OnInit {
   private data = inject(DataService);
-  constructor() {}
+  public load:boolean=true;
+  public carsP!:Promise<Car[]>;
+  constructor(private router:Router) {
+    
+  }
 
+  async ngOnInit(): Promise<void> {
+    this.carsP = this.getCars();
+  }
   refresh(ev: any) {
     setTimeout(() => {
       (ev as RefresherCustomEvent).detail.complete();
     }, 3000);
   }
-
-  getMessages(): Message[] {
-    return this.data.getMessages();
+  GoToAddCar(){
+    this.router.navigate(["/car/add"])
+  }
+  async getCars(): Promise< Car[]> {
+    this.load=true;
+    const data =  await this.data.getCars();
+    console.log(data);
+    this.load=false;
+    console.log(Object.values(data));
+    return Object.values(data);
   }
 }

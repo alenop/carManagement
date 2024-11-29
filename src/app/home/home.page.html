@@ -1,7 +1,10 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Inbox
+      <span style="margin-right: 30px;">Cars</span>
+      <span  style="color: black; font-weight: bold;">🔴 Rented</span>
+      <span  style="color: black; font-weight: bold;">🟢 Free</span>
+      <ion-button (click)="GoToAddCar()" style="margin-left: 30px;">Add a car</ion-button>
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -14,12 +17,20 @@
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">
-        Inbox
+        <span style="margin-right: 30px;">Cars</span>
+        <span style="color: black; font-weight: bold;">🔴 Rented</span>
+        <span style="color: black; font-weight: bold;">🟢 Free</span>
+        <ion-button (click)="GoToAddCar()" style="margin-right: 30px;">Add a car</ion-button>
       </ion-title>
     </ion-toolbar>
   </ion-header>
   
   <ion-list>
-    <app-message *ngFor="let message of getMessages()" [message]="message"></app-message>
+    <div *ngIf="(carsP | async) as cars;">
+    <app-CarUpFront *ngFor="let car of cars" [car]="car"></app-CarUpFront>
+    <ng-template #loading>
+      <p>Loading cars...</p>
+    </ng-template>
+  </div>
   </ion-list>
 </ion-content>

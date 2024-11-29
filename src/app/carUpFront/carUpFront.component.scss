@@ -58,9 +58,25 @@ ion-item ion-note.md {
   align-self: start;
   margin: 16px 10px 16px 16px;
 }
-
-.dot-unread {
-  background: var(--ion-color-primary);
+.flex {
+  display: flex;
+}
+.row {
+  display:flex;
+  flex-direction: row;
+}
+.image {
+  height:100px;width:100px;margin-right:50px;
+}
+.column {
+  display:flex;
+  flex-direction: column;
+}
+.dot-rented {
+  background-color: greenyellow;
+}
+.dot-free {
+  background-color: red;
 }
 
 ion-footer ion-title {

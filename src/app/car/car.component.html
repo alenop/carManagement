@@ -1,0 +1,45 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title>Car Form</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+    <form [formGroup]="carForm" (ngSubmit)="onSubmit()">
+      <!-- Marque -->
+      <ion-item>
+        <ion-label position="floating">Marque</ion-label>
+        <ion-input formControlName="marque" type="text" placeholder="Enter car brand"></ion-input>
+      </ion-item>
+  
+      <!-- Modèle -->
+      <ion-item>
+        <ion-label position="floating">Modèle</ion-label>
+        <ion-input formControlName="modele" type="text" placeholder="Enter car model"></ion-input>
+      </ion-item>
+  
+      <!-- Plaque d’immatriculation -->
+      <ion-item>
+        <ion-label position="floating">Plaque d’immatriculation</ion-label>
+        <ion-input formControlName="plaque" type="text" placeholder="Enter license plate"></ion-input>
+      </ion-item>
+  
+      <!-- Photo Avant -->
+      <ion-item>
+        <ion-label position="stacked">Photo Avant</ion-label>
+        <input type="file" (change)="onFileChange($event, 'avant')" />
+      </ion-item>
+  
+      <!-- Photo Arrière -->
+      <ion-item>
+        <ion-label position="stacked">Photo Arrière</ion-label>
+        <input type="file" (change)="onFileChange($event, 'arriere')" />
+      </ion-item>
+  
+      <!-- Submit Button -->
+      <ion-button expand="full" type="submit" [disabled]="carForm.invalid">Submit</ion-button>
+    </form>
+
+    <ion-button expand="full" (click)="goBack()">Back</ion-button>
+  </ion-content>
+  

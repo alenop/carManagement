@@ -1,0 +1,15 @@
+<ion-item *ngIf="car" [routerLink]="'/car/' + car.id" [detail]="false">
+  <div slot="start" [class]="!car.rented ? 'dot dot-free' : 'dot dot-rented'"></div>
+  <ion-label class="ion-text-wrap">
+    <div class="row">
+      <ion-img class="image"
+  [src]=car.upfront
+></ion-img>
+<div class="row">
+        <ion-note>{{ car.brand }}</ion-note>
+        <ion-icon aria-hidden="true" name="chevron-forward" size="small" *ngIf="isIos()"></ion-icon>
+    <h3>{{ car.model }}</h3>
+    </div>
+  </div>
+  </ion-label>
+  </ion-item>
