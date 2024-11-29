@@ -21,7 +21,7 @@ export class DataService {
  
   public async addCar(brand:string,model:string,id:string,upfront:string,behind:string):Promise<void> {
     const database = getDatabase();
-    await set(ref(database,"/cars/"+id),{brand,model,id,upfront,behind});
+    await set(ref(database,"/cars/"+id),{brand,model,id,upfront,behind,rented:false});
   }
 
   public async getCars():  Promise<{ [key: string]: Car }> {
